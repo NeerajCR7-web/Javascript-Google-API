@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Goolge Books API</title>
+</head>
+<body>
+    <h1>Google Books API</h1>
+    <ul id="bookList"></ul>
+    <script>
+        var bookList = document.getElementById("bookList");
+        var key = "AIzaSyDd7qBf_GHNSPuOSXia7rG0l7_ff7b7BS8";
+        var url = "https://www.googleapis.com/books/v1/volumes?q=alchemist&key=";
+        fetch(url+key).then(function(response){
+            console.log(response);
+            return response.json()
+        }).then(function(data){
+             console.log(data);
+
+             data.items.forEach(function(item) {
+                var newItem = "<li>"+item.volumeInfo.title+"</li>";
+                bookList.innerHTML+=newItem;
+             });
+        })
+    </script>
+
+</body>
+</html>
